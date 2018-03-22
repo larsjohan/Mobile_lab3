@@ -68,23 +68,24 @@ public class BallGame extends Activity {
 
         @Override
         public void onSensorChanged(SensorEvent event) {
+            // Get new x,y values
             float x = event.values[0];
             float y = event.values[1];
 
+            // Calculate the direction of the rotation in X and Y direction
             int xDir = (x > 0) ? 1 : -1;
             int yDir = (y > 0) ? -1 : 1;
 
-            this.dX = Math.abs(Math.abs(this.dX) - Math.abs(x)); // X * sin(theta / 2)
-            this.dY = Math.abs(Math.abs(this.dY) - Math.abs(y)); // Y * sin(theta / 2)
+            // Find the difference in rotation in X and Y direction
+            this.dX = Math.abs(Math.abs(this.dX) - Math.abs(x));
+            this.dY = Math.abs(Math.abs(this.dY) - Math.abs(y));
 
-            //Log.d("Lab3", "Sensor changed --- [" + x + ", " + y + "]");
-
-            float magnitude = (float) Math.sqrt(Math.pow(this.dX, 2) + Math.pow(this.dY, 2));
-
-            Log.d("Lab3", "dX: " + (dX * BIAS) + ", dY: " + (dY * BIAS) + " :: " + magnitude);
-
+            // calculate the new interval to "jump" for X and Y
+            // The bias controls the speed of the movement
             game.setxBias(xDir * this.dX * BIAS);
             game.setyBias(yDir * this.dY * BIAS);
+
+            // Update the view
             game.invalidate();
         }
 
