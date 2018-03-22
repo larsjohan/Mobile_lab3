@@ -18,6 +18,8 @@ public class BallGameLayout extends View {
      */
     private static final Paint PAINTBALL = new Paint();
 
+    private static final Paint PAINTLINE = new Paint();
+
     private float radius = 75;
 
     private float posX;
@@ -36,6 +38,11 @@ public class BallGameLayout extends View {
         PAINTBALL.setColor(Color.GREEN);
         PAINTBALL.setStyle(Paint.Style.FILL);
 
+        PAINTLINE.setAntiAlias(true);
+        PAINTLINE.setColor(Color.RED);
+        PAINTLINE.setStyle(Paint.Style.FILL);
+        PAINTLINE.setStrokeWidth(2f);
+
         this.posX = 0;
         this.posY = 0;
 
@@ -47,12 +54,30 @@ public class BallGameLayout extends View {
     @Override
     protected void onDraw(Canvas canvas) {
 
-        this.posX += this.xBias;
-        this.posY += this.yBias;
+        int width = canvas.getWidth();
+        int height = canvas.getHeight();
+
+        float nextPosX = this.posX + this.xBias;
+        float nextPosY = this.posY + this.yBias;
+
+        if(Math.abs(nextPosX) <= width / 2 - this.radius)
+            this.posX += this.xBias;
+
+        if(Math.abs(nextPosY) <= height / 2 - this.radius)
+            this.posY += this.yBias;
 
         // Draw the background with a frame
         canvas.translate(getWidth() / 2, getHeight() / 2);
         canvas.drawCircle(this.posX, this.posY, this.radius, PAINTBALL);
+
+        Paint linePaint = PAINTLINE;
+        if(Math.abs(this.posX) > width / 2 || Math.abs(this.posY) > height / 2)
+            linePaint.setColor(Color.BLUE);
+        else
+            linePaint.setColor(Color.RED);
+
+
+        canvas.drawLine(0.0f,0.0f, this.posX, this.posY, linePaint);
     }
 
     public void setRadius(float radius) {

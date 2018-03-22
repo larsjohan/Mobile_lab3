@@ -49,18 +49,17 @@ public class BallGame extends Activity {
 
         this.manager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
         assert this.manager != null;
-        this.sensor = this.manager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
+        this.sensor = this.manager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR);
 
         this.listener = new GyroscopeListener();
 
-        // TODO: Change to GAME
         this.manager.registerListener(this.listener, this.sensor, SensorManager.SENSOR_DELAY_GAME);
     }
 
 
     private class GyroscopeListener implements SensorEventListener {
 
-        private static final int BIAS = 100;
+        private static final int BIAS = 75;
 
         private float dX = 0;
 
