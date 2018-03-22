@@ -1,71 +1,85 @@
 package no.ntnu.stud.larsjny.lab3;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.support.constraint.ConstraintLayout;
 
+/**
+ * Main activity.
+ * Sets up the sensor and the listener, and creates and loads the Layout for drawing the ball.
+ *
+ * @author Lars Johan 
+ */
 public class BallGame extends Activity {
 
-    private ConstraintLayout gameBoard;
 
+    /**
+     * A Layout that draws the ball on screen
+     * and controls collision
+     */
     private BallGameLayout game;
 
-    private SensorManager manager;
-
-    private SensorEventListener listener;
-
-    private Sensor sensor;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Set the background/frame
         setContentView(R.layout.ballgamebaselayout);
 
         // Enforce layout orientation to Landscape:
-        super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         // Find container for the ball
-        this.gameBoard = findViewById(R.id.gameBoard);
+        ConstraintLayout gameBoard = findViewById(R.id.gameBoard);
 
         // Create the ball and it's
         this.game = new BallGameLayout(this);
 
         // Add the ball
-        this.gameBoard.addView(this.game);
+        gameBoard.addView(this.game);
 
-        this.manager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
-        assert this.manager != null;
-        this.sensor = this.manager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR);
+        // Setup the RotationVectorSensor
+        SensorManager sensorManager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
 
-        this.listener = new GyroscopeListener();
+        assert sensorManager != null;
 
-        this.manager.registerListener(this.listener, this.sensor, SensorManager.SENSOR_DELAY_GAME);
+        Sensor rotationSensor = sensorManager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR);
+
+        // Add sensor-listener
+        sensorManager.registerListener(new RotationChangedListener(), rotationSensor, SensorManager.SENSOR_DELAY_GAME);
     }
 
 
-    private class GyroscopeListener implements SensorEventListener {
+    private class RotationChangedListener implements SensorEventListener {
 
+        /**
+         * A bias for controlling the speed of the ball
+         */
         private static final int BIAS = 75;
 
+        /**
+         * Difference in rotation around the X-axis
+         */
         private float dX = 0;
 
+        /**
+         * Difference in rotation around the Y-axis
+         */
         private float dY = 0;
 
 
+        /**
+         * {@inheritDoc}
+         * Calculates the difference in rotation and direction of the rotation
+         * in both the X- and Y-direction. Then updates the position of the ball with these values
+         */
         @Override
         public void onSensorChanged(SensorEvent event) {
             // Get new x,y values
@@ -89,10 +103,11 @@ public class BallGame extends Activity {
             game.invalidate();
         }
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
-        public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-        }
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {}
     }
 
 
