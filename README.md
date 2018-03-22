@@ -25,7 +25,7 @@ The initial app is controlled by the direction of the tilt, and it does not requ
 
 ## Checklist
 
-- [ ] The repo URL is in correct format.
+- [X] The repo URL is in correct format.
 - [ ] The code is well written, structured, and Linter warnings are non existed, or well documented and properly justified. 
 - [ ] The app starts with the "ball" in the middle of the screen, and rectangle around the screen with the gap to the outside edge of the phone.
 - [ ] When the phone is placed flat on the table, and the app is started, the "ball" does not move much from the center (understandably, the "move much" is a subjective test, discuss the result with the author of the app).
