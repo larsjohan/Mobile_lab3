@@ -62,7 +62,7 @@ public class BallGame extends Activity {
         /**
          * A bias for controlling the speed of the ball
          */
-        private static final int BIAS = 75;
+        private static final int BIAS = 50;
 
         /**
          * Difference in rotation around the X-axis
