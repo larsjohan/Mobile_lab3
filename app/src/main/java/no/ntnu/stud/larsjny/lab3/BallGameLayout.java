@@ -24,6 +24,10 @@ public class BallGameLayout extends View {
 
     private float posY;
 
+    private float xBias;
+
+    private float yBias;
+
 
     public BallGameLayout(Context context) {
         super(context);
@@ -35,10 +39,16 @@ public class BallGameLayout extends View {
         this.posX = 0;
         this.posY = 0;
 
+        this.xBias = 0;
+        this.yBias = 0;
+
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
+
+        this.posX += this.xBias;
+        this.posY += this.yBias;
 
         // Draw the background with a frame
         canvas.translate(getWidth() / 2, getHeight() / 2);
@@ -56,5 +66,29 @@ public class BallGameLayout extends View {
 
     public void setPosY(float posY) {
         this.posY = posY;
+    }
+
+    public float getPosX() {
+        return posX;
+    }
+
+    public float getPosY() {
+        return posY;
+    }
+
+    public float getxBias() {
+        return xBias;
+    }
+
+    public void setxBias(float xBias) {
+        this.xBias = xBias;
+    }
+
+    public float getyBias() {
+        return yBias;
+    }
+
+    public void setyBias(float yBias) {
+        this.yBias = yBias;
     }
 }
