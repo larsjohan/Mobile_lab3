@@ -26,19 +26,19 @@ The initial app is controlled by the direction of the tilt, and it does not requ
 ## Checklist
 
 - [X] The repo URL is in correct format.
-- [ ] The code is well written, structured, and Linter warnings are non existed, or well documented and properly justified. 
-- [ ] The app starts with the "ball" in the middle of the screen, and rectangle around the screen with the gap to the outside edge of the phone.
-- [ ] When the phone is placed flat on the table, and the app is started, the "ball" does not move much from the center (understandably, the "move much" is a subjective test, discuss the result with the author of the app).
-- [ ] When the phone is held in a hand, the "ball" can be controlled by tilting the phone, and the ball moves as if pulled by the Earth gravity. Discuss the "control feel" of the ball movement with the author.
-    - [ ] No lag, immediate feedback.
+- [X] The code is well written, structured, and Linter warnings are non existed, or well documented and properly justified. 
+- [X] The app starts with the "ball" in the middle of the screen, and rectangle around the screen with the gap to the outside edge of the phone.
+- [X] When the phone is placed flat on the table, and the app is started, the "ball" does not move much from the center (understandably, the "move much" is a subjective test, discuss the result with the author of the app).
+- [X] When the phone is held in a hand, the "ball" can be controlled by tilting the phone, and the ball moves as if pulled by the Earth gravity. Discuss the "control feel" of the ball movement with the author.
+    - [X] No lag, immediate feedback.
     - [ ] Some lag, acceptable.
     - [ ] Large lag, non-acceptable. 
-- [ ] When the ball hits the drawn edge, there is a "ping" sound. The delay between the visual event, i.e. the ball hitting the wall, and the sound, is "acceptable". If the delay is laggy, discuss with the author of the app.
-    - [ ] No lag, immediate feedback.
+- [X] When the ball hits the drawn edge, there is a "ping" sound. The delay between the visual event, i.e. the ball hitting the wall, and the sound, is "acceptable". If the delay is laggy, discuss with the author of the app.
+    - [X] No lag, immediate feedback.
     - [ ] Some lag, acceptable.
     - [ ] Large lag, non-acceptable. 
-- [ ] When the ball hits the edge, there is a short vibration event that provides haptic feedback to the user. 
-    - [ ] No lag, immediate feedback.
+- [X] When the ball hits the edge, there is a short vibration event that provides haptic feedback to the user. 
+    - [X] No lag, immediate feedback.
     - [ ] Some lag, acceptable.
     - [ ] Large lag, non-acceptable. 
-- [ ] Bonus: the magnitude of the tilt speeds up or slows down the ball movement.
+- [X] Bonus: the magnitude of the tilt speeds up or slows down the ball movement.
