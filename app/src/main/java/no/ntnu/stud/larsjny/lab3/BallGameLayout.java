@@ -166,7 +166,7 @@ public class BallGameLayout extends View {
         long now = new Date().getTime();
 
         // Limit by time to get cleaner haptics/audio
-        if(this.haptic.hasVibrator() && now - prevHapticTime > 1000) {
+        if(this.haptic.hasVibrator() && now - prevHapticTime > 250) {
 
             this.haptic.vibrate(50);
 

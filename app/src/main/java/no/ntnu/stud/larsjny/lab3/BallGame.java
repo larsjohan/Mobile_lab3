@@ -13,7 +13,7 @@ import android.support.constraint.ConstraintLayout;
  * Main activity.
  * Sets up the sensor and the listener, and creates and loads the Layout for drawing the ball.
  *
- * @author Lars Johan 
+ * @author Lars Johan
  */
 public class BallGame extends Activity {
 
